@@ -99,8 +99,8 @@ module Enumerable
         end
 
         def my_inject
-    
-            standard_proc = Proc.new { |item, items| }
+            array = []
+            standard_proc = Proc.new { |item| array << item }
             items = self
             if block_given?
                 base_sum = 0
@@ -112,7 +112,15 @@ module Enumerable
                     base_sum = yield(base_sum,items[i])
                 end
                 base_sum
-
+            else
+                my_proc = Proc.new { |item| array << item}
+                i = 0
+                while i < items.length do
+                my_proc.call(items[i])
+                i += 1
+                end
+                return array
+                binding.pry
             end
              
         end
@@ -122,7 +130,7 @@ module Enumerable
 end 
 def multiply_els(args)
     multiply = args.my_inject { |accumulator,value| accumulator * value}
-    return multiply
+    return multiply 
 
 end
 def throwaway

@@ -22,3 +22,7 @@ p numbers.map { |item| item * 2}
 p numbers.my_inject { |accumulator, value| accumulator * value}
 p numbers.inject { |accumulator, value| accumulator * value}
 p multiply_els([2,4,5])
+
+p weird = numbers.insert(2, numbers.my_inject())
+binding.pry
+p "bl"
